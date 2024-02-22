@@ -22,3 +22,10 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# heroku apps:destroy -a lyricraft-api
+# heroku create lyricraft-api
+# heroku git:remote -a lyricraft-api
+# heroku buildpacks:add https://github.com/falcon-0418/heroku-buildpack-mecab-ipadic-neologd.git
+# heroku config:set LD_LIBRARY_PATH=/app/.heroku/mecab/lib
+# heroku config:set MECAB_PATH=/app/.heroku/mecab/lib
