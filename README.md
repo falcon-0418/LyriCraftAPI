@@ -30,3 +30,4 @@ Things you may want to cover:
 # heroku config:set LD_LIBRARY_PATH=/app/.heroku/mecab/lib
 # heroku config:set MECAB_PATH=/app/.heroku/mecab/lib
 # heroku repo:purge_cache -a lyricraft-api
+
