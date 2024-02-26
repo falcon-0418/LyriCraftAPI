@@ -17,6 +17,8 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 gem 'natto'
 
+gem 'mecab', '0.996'
+
 gem 'rack-cors'
 
 gem 'activerecord'
