@@ -48,12 +48,24 @@ module Api::GoogleTokenVerifier
 
     def fetch_jwks_keys
       jwks_uri = 'https://www.googleapis.com/oauth2/v3/certs'
-      response = Net::HTTP.get(URI(jwks_uri))
-      jwks = JSON.parse(response)
-
-      jwks['keys'].each_with_object({}) do |key_data, keys|
-        jwk = JWT::JWK.import(key_data)
-        keys[key_data['kid']] = jwk.public_key
+      Rails.cache.fetch("jwks_keys", expires_in: 12.hours) do
+        begin
+          response = Net::HTTP.get(URI(jwks_uri))
+          jwks = JSON.parse(response)
+          jwks['keys'].each_with_object({}) do |key_data, keys|
+            jwk = JWT::JWK.import(key_data)
+            keys[key_data['kid']] = jwk.public_key
+          end
+        rescue Net::OpenTimeout, Net::ReadTimeout, SocketError => e
+          Rails.logger.error("Network error while fetching JWKS keys: #{e.message}")
+          {}
+        rescue JSON::ParserError => e
+          Rails.logger.error("JSON parsing error while fetching JWKS keys: #{e.message}")
+          {}
+        rescue => e
+          Rails.logger.error("Unexpected error while fetching JWKS keys: #{e.message}")
+          {}
+        end
       end
     end
   end

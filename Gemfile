@@ -17,8 +17,6 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'mini_racer', platforms: :ruby
 gem 'natto'
 
-gem 'mecab', '0.996'
-
 gem 'rack-cors'
 
 gem 'activerecord'
@@ -32,6 +30,8 @@ gem 'turbolinks', '~> 5'
 gem 'fast_jsonapi'
 # Use Redis adapter to run Action Cable in production
 gem 'jwt'
+
+gem 'aws-sdk-s3', require: false
 # gem 'redis', '~> 4.0'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

@@ -4,8 +4,7 @@ class Analyzer
   end
 
   def self.analyze(input_word)
-    nm = Natto::MeCab.new(dicdir: "/usr/local/lib/mecab/dic/mecab-ipadic-neologd")
-
+    nm = Natto::MeCab.new(dicdir: ENV['MECAB_DICDIR'])
     result = []
 
     nm.parse(input_word) do |n|

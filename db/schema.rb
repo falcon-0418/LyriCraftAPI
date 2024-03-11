@@ -72,7 +72,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_10_142424) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "words", primary_key: "wordid", id: :integer, default: -> { "nextval('word_wordid_seq'::regclass)" }, force: :cascade do |t|
+  create_table "words", primary_key: "wordid", id: :integer, # default: -> { "nextval('word_wordid_seq'::regclass)" },
+  force: :cascade do |t|
     t.string "surface_form"
     t.integer "left_context_id"
     t.integer "right_context_id"
