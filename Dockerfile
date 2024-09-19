@@ -66,4 +66,4 @@ RUN bundle install
 
 
 # # # Rails serverの起動
-CMD ["bundle", "exec",  "rails", "server", "-b", "0.0.0.0", "-p", "${PORT}", "-e", "production"]
+CMD ["bundle", "exec",  "rails", "server", "-b", "0.0.0.0", "-p", "$PORT", "-e", "production"]
