@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_02_10_142424) do
+ActiveRecord::Schema[7.0].define(version: 2024_09_19_060914) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,15 +22,6 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_10_142424) do
     t.datetime "updated_at", null: false
     t.index ["access_token"], name: "index_api_keys_on_access_token", unique: true
     t.index ["user_id"], name: "index_api_keys_on_user_id"
-  end
-
-  create_table "authentications", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.string "provider", null: false
-    t.string "uid", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["provider", "uid"], name: "index_authentications_on_provider_and_uid"
   end
 
   create_table "notes", force: :cascade do |t|
@@ -72,8 +63,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_10_142424) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "words", primary_key: "wordid", id: :integer, # default: -> { "nextval('word_wordid_seq'::regclass)" },
-  force: :cascade do |t|
+  create_table "words", force: :cascade do |t|
     t.string "surface_form"
     t.integer "left_context_id"
     t.integer "right_context_id"
@@ -87,6 +77,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_02_10_142424) do
     t.string "base_form"
     t.string "reading"
     t.string "pronunciation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.string "rhyme"
   end
 

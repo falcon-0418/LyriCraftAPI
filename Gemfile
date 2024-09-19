@@ -19,7 +19,7 @@ gem 'natto'
 
 gem 'rack-cors'
 
-gem 'activerecord'
+gem 'dotenv-rails'
 
 gem 'sorcery', '~> 0.16.5'
 # Use CoffeeScript for .coffee assets and views

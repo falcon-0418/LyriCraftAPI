@@ -1,24 +1,22 @@
-
 default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
+  username: postgres
+  password: password
+  host: db
 
 development:
   <<: *default
-  database: lyricraft_api
-  username: falcon
+  database: api_development
 
 test:
   <<: *default
-  database: lyricraft_api
-  username: falcon
+  database: api_test
 
 production:
   <<: *default
-  database: <%= ENV['DATABASE'] %>
-  username: <%= ENV['USERNAME'] %>
-  port: 5432
-  password: <%= ENV['PASSWORD'] %>
-  host: <%= ENV['HOST'] %>
+  database: api_production
+  username: api
+  password: <%= ENV["API_DATABASE_PASSWORD"] %>

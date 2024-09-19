@@ -1,11 +1,21 @@
 namespace :db do
-  desc "wordsテーブルのrhymeカラムを更新する"
+  desc "S3からデータを取得してデータベースにシードし、その後rhymeカラムを更新する"
+  task seed_and_update_rhymes: :environment do
+    Rake::Task['db:seed'].invoke
+    Rake::Task['db:migrate'].invoke
+    Word.update_rhymes
+  end
+end
+
+namespace :word do
+  desc "rhymeカラムの更新のみ"
   task update_rhymes: :environment do
     Word.update_rhymes
   end
 end
 
-#rake db:update_rhymes
+
+#rails db:seed_and_update_rhymes
 
 #csvインポート
 
