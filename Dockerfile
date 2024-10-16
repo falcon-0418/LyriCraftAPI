@@ -39,6 +39,7 @@ RUN apt-get update -qq \
     mecab-ipadic-utf8 \
     libmecab-dev \
     \
+    postgresql-client \
     nodejs \
     locales \
   # mecab-builderも含めパッケージリストを削除して、Dockerイメージのサイズを小さくする

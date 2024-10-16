@@ -9,7 +9,7 @@ class Api::V1::User::NotesController < Api::V1::BaseController
   end
 
   def create
-    note = current_user.notes.new(note_params)
+    note = current_user.notes.new(title: "", body: "")
 
     if note.save
       json_string = NoteSerializer.new(note).serialized_json
